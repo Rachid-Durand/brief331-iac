@@ -1,0 +1,8 @@
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+*.retry
+lynis-report.txt
+openscap-report.html

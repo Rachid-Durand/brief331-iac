@@ -1,0 +1,131 @@
+---
+- name: Durcissement VM Debian 13
+  hosts: debian
+  become: true
+  tasks:
+    - name: Mettre a jour le cache APT
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    - name: Mettre a jour tous les paquets
+      apt:
+        upgrade: dist
+    - name: Interdire le login SSH en tant que root
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PermitRootLogin'
+        line: 'PermitRootLogin no'
+      notify: Redemarrer SSH
+    - name: Desactiver l authentification par mot de passe
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+      notify: Redemarrer SSH
+    - name: Installer UFW
+      apt:
+        name: ufw
+        state: present
+    - name: Bloquer le trafic entrant par defaut
+      ufw:
+        direction: incoming
+        policy: deny
+    - name: Autoriser le trafic sortant par defaut
+      ufw:
+        direction: outgoing
+        policy: allow
+    - name: Autoriser SSH port 22
+      ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+    - name: Activer UFW
+      ufw:
+        state: enabled
+    - name: Installer fail2ban
+      apt:
+        name: fail2ban
+        state: present
+    - name: Configurer fail2ban pour SSH
+      copy:
+        dest: /etc/fail2ban/jail.local
+        content: |
+          [sshd]
+          enabled = true
+          port = 22
+          maxretry = 3
+          bantime = 3600
+          findtime = 600
+      notify: Redemarrer fail2ban
+    - name: Installer unattended-upgrades
+      apt:
+        name: unattended-upgrades
+        state: present
+    - name: Activer les mises a jour automatiques
+      copy:
+        dest: /etc/apt/apt.conf.d/20auto-upgrades
+        content: |
+          APT::Periodic::Update-Package-Lists "1";
+          APT::Periodic::Unattended-Upgrade "1";
+    - name: Installer Lynis
+      apt:
+        name: lynis
+        state: present
+    - name: Installer OpenSCAP
+      apt:
+        name:
+          - openscap-scanner
+          - openscap-utils
+        state: present
+    - name: Hardening SSH supplementaire
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: "{{ item.regexp }}"
+        line: "{{ item.line }}"
+      loop:
+        - { regexp: '^#?AllowTcpForwarding', line: 'AllowTcpForwarding no' }
+        - { regexp: '^#?ClientAliveCountMax', line: 'ClientAliveCountMax 2' }
+        - { regexp: '^#?LogLevel', line: 'LogLevel VERBOSE' }
+        - { regexp: '^#?MaxAuthTries', line: 'MaxAuthTries 3' }
+        - { regexp: '^#?MaxSessions', line: 'MaxSessions 2' }
+        - { regexp: '^#?TCPKeepAlive', line: 'TCPKeepAlive no' }
+        - { regexp: '^#?X11Forwarding', line: 'X11Forwarding no' }
+        - { regexp: '^#?AllowAgentForwarding', line: 'AllowAgentForwarding no' }
+      notify: Redemarrer SSH
+    - name: Configurer umask dans login.defs
+      lineinfile:
+        path: /etc/login.defs
+        regexp: '^UMASK'
+        line: 'UMASK 027'
+    - name: Configurer expiration des comptes par defaut
+      lineinfile:
+        path: /etc/login.defs
+        regexp: '^PASS_MAX_DAYS'
+        line: 'PASS_MAX_DAYS 90'
+
+    - name: Lancer audit Lynis
+      command: lynis audit system --no-colors
+      register: lynis_result
+      changed_when: false
+    - name: Sauvegarder le rapport Lynis
+      copy:
+        content: "{{ lynis_result.stdout }}"
+        dest: /home/rachid/lynis-report.txt
+    - name: Telecharger les definitions OVAL Debian
+      shell: wget -q https://www.debian.org/security/oval/oval-definitions-trixie.xml.bz2 -O /tmp/oval-debian.xml.bz2 && bunzip2 -f /tmp/oval-debian.xml.bz2
+      changed_when: false
+
+    - name: Lancer audit OpenSCAP
+      command: oscap oval eval --report /home/rachid/openscap-report.html /tmp/oval-debian.xml
+      register: oscap_result
+      changed_when: false
+      failed_when: false
+  handlers:
+    - name: Redemarrer SSH
+      service:
+        name: ssh
+        state: restarted
+    - name: Redemarrer fail2ban
+      service:
+        name: fail2ban
+        state: restarted
