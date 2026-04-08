@@ -6,3 +6,4 @@ terraform.tfstate.backup
 *.retry
 lynis-report.txt
 openscap-report.html
+terraform/terraform.tfstate*
