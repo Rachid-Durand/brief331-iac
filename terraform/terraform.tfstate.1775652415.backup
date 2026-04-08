@@ -1,0 +1,638 @@
+{
+  "version": 4,
+  "terraform_version": "1.14.8",
+  "serial": 54,
+  "lineage": "94986778-c1cb-5bd2-f905-71bece332028",
+  "outputs": {
+    "planka_url": {
+      "value": "https://planka-app.salmonforest-ecc30f87.francecentral.azurecontainerapps.io",
+      "type": "string"
+    },
+    "postgres_fqdn": {
+      "value": "psql-brief331-rnz.postgres.database.azure.com",
+      "type": "string"
+    },
+    "resource_group": {
+      "value": "rg-brief331",
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "mode": "managed",
+      "type": "azurerm_container_app",
+      "name": "planka",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "container_app_environment_id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.App/managedEnvironments/cae-brief331",
+            "custom_domain_verification_id": "2D71F895F4D5EB7B5385375353F229E533BD15135A95501E59B15C8604394961",
+            "dapr": [],
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.App/containerApps/planka-app",
+            "identity": [],
+            "ingress": [
+              {
+                "allow_insecure_connections": false,
+                "custom_domain": [],
+                "exposed_port": 0,
+                "external_enabled": true,
+                "fqdn": "planka-app.salmonforest-ecc30f87.francecentral.azurecontainerapps.io",
+                "ip_security_restriction": [],
+                "target_port": 1337,
+                "traffic_weight": [
+                  {
+                    "label": "",
+                    "latest_revision": true,
+                    "percentage": 100,
+                    "revision_suffix": ""
+                  }
+                ],
+                "transport": "auto"
+              }
+            ],
+            "latest_revision_fqdn": "planka-app--0000002.salmonforest-ecc30f87.francecentral.azurecontainerapps.io",
+            "latest_revision_name": "planka-app--0000002",
+            "location": "francecentral",
+            "name": "planka-app",
+            "outbound_ip_addresses": [
+              "20.74.16.183",
+              "20.74.94.128",
+              "20.74.94.150",
+              "20.74.93.40",
+              "98.66.249.192",
+              "98.66.250.10",
+              "98.66.248.181",
+              "98.66.249.135",
+              "98.66.248.214",
+              "98.66.250.141",
+              "20.19.239.83",
+              "172.189.12.75",
+              "172.189.174.219",
+              "4.178.216.19",
+              "172.189.173.164",
+              "20.40.148.255",
+              "4.211.69.69",
+              "4.251.202.168",
+              "4.251.186.182",
+              "4.178.14.42",
+              "4.251.138.82",
+              "172.189.13.56",
+              "4.211.69.75",
+              "172.189.46.179",
+              "20.216.196.172",
+              "20.216.216.188",
+              "20.216.216.219",
+              "20.216.217.5",
+              "20.216.216.182",
+              "98.66.242.126",
+              "98.66.242.144",
+              "98.66.242.209",
+              "98.66.242.230",
+              "98.66.242.239",
+              "98.66.242.232",
+              "172.189.12.72",
+              "20.19.223.96",
+              "20.19.220.136",
+              "20.19.221.135",
+              "4.233.16.221",
+              "20.19.152.66"
+            ],
+            "registry": [],
+            "resource_group_name": "rg-brief331",
+            "revision_mode": "Single",
+            "secret": [],
+            "tags": {},
+            "template": [
+              {
+                "azure_queue_scale_rule": [],
+                "container": [
+                  {
+                    "args": [],
+                    "command": [],
+                    "cpu": 0.5,
+                    "env": [
+                      {
+                        "name": "DATABASE_URL",
+                        "secret_name": "",
+                        "value": "postgresql://pgadmin:Brief331Secure2026@psql-brief331-rnz.postgres.database.azure.com:5432/planka?ssl=true"
+                      },
+                      {
+                        "name": "SECRET_KEY",
+                        "secret_name": "",
+                        "value": "change-me-to-a-long-random-string-here"
+                      },
+                      {
+                        "name": "DEFAULT_ADMIN_EMAIL",
+                        "secret_name": "",
+                        "value": "rnazrati@gmail.com"
+                      },
+                      {
+                        "name": "DEFAULT_ADMIN_PASSWORD",
+                        "secret_name": "",
+                        "value": "Admin123Brief331"
+                      },
+                      {
+                        "name": "DEFAULT_ADMIN_NAME",
+                        "secret_name": "",
+                        "value": "Admin"
+                      },
+                      {
+                        "name": "DEFAULT_ADMIN_USERNAME",
+                        "secret_name": "",
+                        "value": "admin"
+                      },
+                      {
+                        "name": "TRUST_PROXY",
+                        "secret_name": "",
+                        "value": "0"
+                      },
+                      {
+                        "name": "BASE_URL",
+                        "secret_name": "",
+                        "value": "https://planka-app.salmonforest-ecc30f87.francecentral.azurecontainerapps.io"
+                      }
+                    ],
+                    "ephemeral_storage": "2Gi",
+                    "image": "ghcr.io/plankanban/planka:latest",
+                    "liveness_probe": [],
+                    "memory": "1Gi",
+                    "name": "planka-app",
+                    "readiness_probe": [],
+                    "startup_probe": [],
+                    "volume_mounts": []
+                  }
+                ],
+                "custom_scale_rule": [],
+                "http_scale_rule": [],
+                "init_container": [],
+                "max_replicas": 1,
+                "min_replicas": 1,
+                "revision_suffix": "",
+                "tcp_scale_rule": [],
+                "volume": []
+              }
+            ],
+            "timeouts": null,
+            "workload_profile_name": "Consumption"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "custom_domain_verification_id"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_container_app_environment",
+      "name": "env",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "custom_domain_verification_id": "2D71F895F4D5EB7B5385375353F229E533BD15135A95501E59B15C8604394961",
+            "dapr_application_insights_connection_string": "",
+            "default_domain": "icysmoke-3d6b65e2.francecentral.azurecontainerapps.io",
+            "docker_bridge_cidr": "",
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.App/managedEnvironments/cae-brief331",
+            "infrastructure_resource_group_name": "ME_cae-brief331_rg-brief331_francecentral",
+            "infrastructure_subnet_id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331/subnets/subnet-containers",
+            "internal_load_balancer_enabled": false,
+            "location": "francecentral",
+            "log_analytics_workspace_id": "",
+            "mutual_tls_enabled": false,
+            "name": "cae-brief331",
+            "platform_reserved_cidr": "",
+            "platform_reserved_dns_ip_address": "",
+            "resource_group_name": "rg-brief331",
+            "static_ip_address": "20.74.67.171",
+            "tags": {},
+            "timeouts": null,
+            "workload_profile": [],
+            "zone_redundancy_enabled": false
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "dapr_application_insights_connection_string"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0=",
+          "dependencies": [
+            "azurerm_log_analytics_workspace.logs",
+            "azurerm_resource_group.rg",
+            "azurerm_subnet.container_subnet",
+            "azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_log_analytics_workspace",
+      "name": "logs",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 3,
+          "attributes": {
+            "allow_resource_only_permissions": true,
+            "cmk_for_query_forced": false,
+            "daily_quota_gb": -1,
+            "data_collection_rule_id": "",
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.OperationalInsights/workspaces/logs-brief331",
+            "identity": [],
+            "immediate_data_purge_on_30_days_enabled": false,
+            "internet_ingestion_enabled": true,
+            "internet_query_enabled": true,
+            "local_authentication_disabled": false,
+            "location": "francecentral",
+            "name": "logs-brief331",
+            "primary_shared_key": "ux0b/kg64Yq4ZCaOgktF2zkKNRSG2wL563Kb8aMuSHkHA2FNWl3EXb7kM4lEtohoex/ApwuZ+8TdtqMg4d2/6g==",
+            "reservation_capacity_in_gb_per_day": null,
+            "resource_group_name": "rg-brief331",
+            "retention_in_days": 30,
+            "secondary_shared_key": "8WeqQCINldbyi/Ywhln9uiXjvliCABRxPs0VSAwVVoqJ9ovh34eIKQwYqQTZlkHCDjuLdnAzs7p3F3lLGNh/1A==",
+            "sku": "PerGB2018",
+            "tags": {},
+            "timeouts": null,
+            "workspace_id": "10463bed-77c3-4edc-a90a-667d845e1dbb"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "primary_shared_key"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "secondary_shared_key"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIzIn0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_postgresql_flexible_server",
+      "name": "postgres",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "administrator_login": "pgadmin",
+            "administrator_password": "Brief331Secure2026",
+            "authentication": [
+              {
+                "active_directory_auth_enabled": false,
+                "password_auth_enabled": true,
+                "tenant_id": ""
+              }
+            ],
+            "auto_grow_enabled": false,
+            "backup_retention_days": 7,
+            "create_mode": null,
+            "customer_managed_key": [],
+            "delegated_subnet_id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331/subnets/subnet-database",
+            "fqdn": "psql-brief331-rnz.postgres.database.azure.com",
+            "geo_redundant_backup_enabled": false,
+            "high_availability": [],
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.DBforPostgreSQL/flexibleServers/psql-brief331-rnz",
+            "identity": [],
+            "location": "francecentral",
+            "maintenance_window": [],
+            "name": "psql-brief331-rnz",
+            "point_in_time_restore_time_in_utc": null,
+            "private_dns_zone_id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/privateDnsZones/brief331.postgres.database.azure.com",
+            "public_network_access_enabled": false,
+            "replication_role": "",
+            "resource_group_name": "rg-brief331",
+            "sku_name": "B_Standard_B1ms",
+            "source_server_id": null,
+            "storage_mb": 32768,
+            "storage_tier": "P4",
+            "tags": {},
+            "timeouts": null,
+            "version": "16",
+            "zone": "1"
+          },
+          "sensitive_attributes": [
+            [
+              {
+                "type": "get_attr",
+                "value": "administrator_login"
+              }
+            ],
+            [
+              {
+                "type": "get_attr",
+                "value": "administrator_password"
+              }
+            ]
+          ],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjozNjAwMDAwMDAwMDAwLCJkZWxldGUiOjM2MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjozNjAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_private_dns_zone.postgres_dns",
+            "azurerm_private_dns_zone_virtual_network_link.dns_link",
+            "azurerm_resource_group.rg",
+            "azurerm_subnet.db_subnet",
+            "azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_postgresql_flexible_server_database",
+      "name": "planka_db",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "charset": "UTF8",
+            "collation": "en_US.utf8",
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.DBforPostgreSQL/flexibleServers/psql-brief331-rnz/databases/planka",
+            "name": "planka",
+            "server_id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.DBforPostgreSQL/flexibleServers/psql-brief331-rnz",
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMH19",
+          "dependencies": [
+            "azurerm_postgresql_flexible_server.postgres",
+            "azurerm_private_dns_zone.postgres_dns",
+            "azurerm_private_dns_zone_virtual_network_link.dns_link",
+            "azurerm_resource_group.rg",
+            "azurerm_subnet.db_subnet",
+            "azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone",
+      "name": "postgres_dns",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/privateDnsZones/brief331.postgres.database.azure.com",
+            "max_number_of_record_sets": 25000,
+            "max_number_of_virtual_network_links": 1000,
+            "max_number_of_virtual_network_links_with_registration": 100,
+            "name": "brief331.postgres.database.azure.com",
+            "number_of_record_sets": 2,
+            "resource_group_name": "rg-brief331",
+            "soa_record": [
+              {
+                "email": "azureprivatedns-host.microsoft.com",
+                "expire_time": 2419200,
+                "fqdn": "brief331.postgres.database.azure.com.",
+                "host_name": "azureprivatedns.net",
+                "minimum_ttl": 10,
+                "refresh_time": 3600,
+                "retry_time": 300,
+                "serial_number": 1,
+                "tags": {},
+                "ttl": 3600
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_private_dns_zone_virtual_network_link",
+      "name": "dns_link",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/privateDnsZones/brief331.postgres.database.azure.com/virtualNetworkLinks/dns-link-brief331",
+            "name": "dns-link-brief331",
+            "private_dns_zone_name": "brief331.postgres.database.azure.com",
+            "registration_enabled": false,
+            "resource_group_name": "rg-brief331",
+            "tags": {},
+            "timeouts": null,
+            "virtual_network_id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_private_dns_zone.postgres_dns",
+            "azurerm_resource_group.rg",
+            "azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_resource_group",
+      "name": "rg",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331",
+            "location": "francecentral",
+            "managed_by": "",
+            "name": "rg-brief331",
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjo1NDAwMDAwMDAwMDAwLCJkZWxldGUiOjU0MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjo1NDAwMDAwMDAwMDAwfX0="
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "container_subnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.0.0/23"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [
+              {
+                "name": "container-delegation",
+                "service_delegation": [
+                  {
+                    "actions": [
+                      "Microsoft.Network/virtualNetworks/subnets/join/action"
+                    ],
+                    "name": "Microsoft.App/environments"
+                  }
+                ]
+              }
+            ],
+            "enforce_private_link_endpoint_network_policies": false,
+            "enforce_private_link_service_network_policies": false,
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331/subnets/subnet-containers",
+            "name": "subnet-containers",
+            "private_endpoint_network_policies": "Enabled",
+            "private_endpoint_network_policies_enabled": true,
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "rg-brief331",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "timeouts": null,
+            "virtual_network_name": "vnet-brief331"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_subnet",
+      "name": "db_subnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_prefixes": [
+              "10.0.4.0/24"
+            ],
+            "default_outbound_access_enabled": true,
+            "delegation": [
+              {
+                "name": "db-delegation",
+                "service_delegation": [
+                  {
+                    "actions": [
+                      "Microsoft.Network/virtualNetworks/subnets/join/action"
+                    ],
+                    "name": "Microsoft.DBforPostgreSQL/flexibleServers"
+                  }
+                ]
+              }
+            ],
+            "enforce_private_link_endpoint_network_policies": false,
+            "enforce_private_link_service_network_policies": false,
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331/subnets/subnet-database",
+            "name": "subnet-database",
+            "private_endpoint_network_policies": "Enabled",
+            "private_endpoint_network_policies_enabled": true,
+            "private_link_service_network_policies_enabled": true,
+            "resource_group_name": "rg-brief331",
+            "service_endpoint_policy_ids": [],
+            "service_endpoints": [],
+            "timeouts": null,
+            "virtual_network_name": "vnet-brief331"
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg",
+            "azurerm_virtual_network.vnet"
+          ]
+        }
+      ]
+    },
+    {
+      "mode": "managed",
+      "type": "azurerm_virtual_network",
+      "name": "vnet",
+      "provider": "provider[\"registry.terraform.io/hashicorp/azurerm\"]",
+      "instances": [
+        {
+          "schema_version": 0,
+          "attributes": {
+            "address_space": [
+              "10.0.0.0/16"
+            ],
+            "bgp_community": "",
+            "ddos_protection_plan": [],
+            "dns_servers": [],
+            "edge_zone": "",
+            "encryption": [],
+            "flow_timeout_in_minutes": 0,
+            "guid": "7fafda88-b4cc-406b-b1e8-6c4f9ea957d5",
+            "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331",
+            "location": "francecentral",
+            "name": "vnet-brief331",
+            "resource_group_name": "rg-brief331",
+            "subnet": [
+              {
+                "address_prefix": "10.0.0.0/23",
+                "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331/subnets/subnet-containers",
+                "name": "subnet-containers",
+                "security_group": ""
+              },
+              {
+                "address_prefix": "10.0.4.0/24",
+                "id": "/subscriptions/8a4319d8-a510-4911-b6a9-8df13c9c8375/resourceGroups/rg-brief331/providers/Microsoft.Network/virtualNetworks/vnet-brief331/subnets/subnet-database",
+                "name": "subnet-database",
+                "security_group": ""
+              }
+            ],
+            "tags": {},
+            "timeouts": null
+          },
+          "sensitive_attributes": [],
+          "identity_schema_version": 0,
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxODAwMDAwMDAwMDAwLCJkZWxldGUiOjE4MDAwMDAwMDAwMDAsInJlYWQiOjMwMDAwMDAwMDAwMCwidXBkYXRlIjoxODAwMDAwMDAwMDAwfX0=",
+          "dependencies": [
+            "azurerm_resource_group.rg"
+          ]
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
